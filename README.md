@@ -7,7 +7,7 @@ Asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tuusuario/tuproyecto.git
+git clone https://github.com/ismacastro/itunespodcast.git
 cd tuproyecto
 ```
 
