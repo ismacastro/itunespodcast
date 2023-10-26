@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './mainView.css';
+import './MainView.css';
 
 const MainView = () => {
   const [podcasts, setPodcasts] = useState([]);

@@ -34,7 +34,6 @@ Para ejecutar la aplicación en modo de desarrollo:
 
 npm run build
 
-npm run serve
 ```
 
 La aplicación se servirá en un servidor local en modo de producción.
