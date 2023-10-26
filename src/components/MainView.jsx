@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const MainView = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [popularPodcasts, setPopularPodcasts] = useState([]); 
 
   useEffect(() => {
     const fetchPopularPodcasts = async () => {
@@ -20,6 +21,7 @@ const MainView = () => {
         const popularPodcasts = data.feed.entry;
 
         setPodcasts(popularPodcasts);
+        setPopularPodcasts(popularPodcasts); 
       } catch (error) {
         console.error(error);
       }
@@ -29,15 +31,23 @@ const MainView = () => {
   }, []);
 
   const handleSearch = (e) => {
-    const searchText = e.target.value.toLowerCase(); 
+    const newText = e.target.value;
+    setSearchText(newText);
 
-    const filteredPodcasts = podcasts.filter((podcast) => {
+    if (newText === '') {
+      setPodcasts(popularPodcasts);
+    } else {
+      filterPodcasts(newText);
+    }
+  };
+
+  const filterPodcasts = (text) => {
+    const lowerText = text.toLowerCase();
+    const filteredPodcasts = popularPodcasts.filter((podcast) => {
       const title = podcast['im:name'].label.toLowerCase();
       const author = podcast['im:artist'].label.toLowerCase();
-      return title.includes(searchText) || author.includes(searchText);
+      return title.includes(lowerText) || author.includes(lowerText);
     });
-
-    setSearchText(e.target.value);
     setPodcasts(filteredPodcasts);
   };
 
