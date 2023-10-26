@@ -1,0 +1,54 @@
+.episode-detail-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 50px;
+  }
+  
+  .sidebar {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .sidebar img {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  
+  .sidebar h2 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .sidebar p {
+    color: #777;
+    margin: 5px 0;
+  }
+  
+  .main-content {
+    text-align: left;
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-content h3 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .main-content p {
+    margin: 5px 0;
+  }
+  
+  audio {
+    width: 100%;
+    margin: 10px 0;
+  }
+  

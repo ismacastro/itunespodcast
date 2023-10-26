@@ -1,0 +1,24 @@
+.podcast-detail-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .podcast-detail-card {
+    flex: 1;
+    height: 310px;
+    margin-right: 20px;
+    text-align: left;
+    border: 1px solid #cfcfcf;
+    margin-top: 65px;
+    padding: 2%;
+  }
+  
+  .episode-list ul li {
+    border: 1px solid #cfcfcf;
+    flex: 2;
+    text-align: left;
+  }
+  
+  ul {
+    list-style: none;
+  }

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './mainView.css';
 
 const MainView = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [popularPodcasts, setPopularPodcasts] = useState([]); 
+  const [popularPodcasts, setPopularPodcasts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Nuevo estado de carga
 
   useEffect(() => {
     const fetchPopularPodcasts = async () => {
@@ -21,9 +23,11 @@ const MainView = () => {
         const popularPodcasts = data.feed.entry;
 
         setPodcasts(popularPodcasts);
-        setPopularPodcasts(popularPodcasts); 
+        setPopularPodcasts(popularPodcasts);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false); // Cuando finalice la carga, establece el estado de carga en "false"
       }
     };
 
@@ -53,20 +57,34 @@ const MainView = () => {
 
   return (
     <div>
-      <h1>Lista de Podcasts Populares</h1>
-      <input
-        type="text"
-        placeholder="Buscar por título o autor"
-        value={searchText}
-        onChange={handleSearch}
-      />
-      <ul>
-        {podcasts.map((podcast) => (
-          <li key={podcast.id.attributes['im:id']}>
-            <Link to={`/podcast/${podcast.id.attributes['im:id']}`}>{podcast['im:name'].label}</Link>
-          </li>
-        ))}
-      </ul>
+      <div className="header">
+        <h1>Lista de Podcasts Populares</h1>
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Buscar por título o autor"
+          value={searchText}
+          onChange={handleSearch}
+        />
+      </div>
+      {isLoading ? (
+        <div className="loading-message">
+          Cargando...
+        </div>
+      ) : (
+        <div className="card-list">
+          {podcasts.map((podcast) => (
+            <div className="card" key={podcast.id.attributes['im:id']}>
+              <img src={podcast['im:image'][2].label} alt={podcast['im:name'].label} />
+              <div className="card-content">
+                <h3>{podcast['im:name'].label}</h3>
+                <p>Por: {podcast['im:artist'].label}</p>
+              </div>
+              <Link to={`/podcast/${podcast.id.attributes['im:id']}`}>Ver detalles</Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

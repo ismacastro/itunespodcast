@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './PodcastDetail.css';
 
 const PodcastDetail = () => {
   const { podcastId } = useParams();
@@ -65,17 +66,18 @@ const PodcastDetail = () => {
   return (
     <div>
       <Link to="/">Volver a la lista de podcasts</Link>
-      <div className="sidebar">
+      <div className="podcast-detail-container">
+      <div className="podcast-detail-card">
         <img src={podcast.artworkUrl100} alt={podcast.collectionName} />
         <h2>{podcast.collectionName}</h2>
         <p>Autor: {podcast.artistName}</p>
         <p>Descripción: {podcast.collectionCensoredName}</p>
       </div>
-      <div className="main-content">
+      <div className="episode-list">
         <h3>Episodios</h3>
         <ul>
           {episodes ? (
-            episodes.map(episode => (
+            episodes.map((episode) => (
               <li key={episode.trackId}>
                 <Link to={`/podcast/${podcastId}/episode/${episode.trackId}`}>
                   {episode.trackName}
@@ -86,6 +88,7 @@ const PodcastDetail = () => {
             <p>Cargando episodios...</p>
           )}
         </ul>
+      </div>
       </div>
     </div>
   );
